@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-3bhla@2639y1l_4bf^2*d162$kk6k-^qtgb=zb=r8$+2+2+du#
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["postgresql://prajwal:Fe5q3R1MoxMlHbDf0dzhN30gUJ0o9iD7@dpg-cs79lvjtq21c73cqesng-a.oregon-postgres.render.com/datamaze_excel_uqjd"]
 
 
 # Application definition
@@ -57,6 +57,7 @@ MIDDLEWARE = [
     'django.middleware.common.CommonMiddleware',
 
 ]
+"""
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
@@ -66,6 +67,20 @@ DATABASES = {
         'HOST': 'localhost',               # Or the IP address where your PostgreSQL is hosted
         'PORT': '5432',                    # Default PostgreSQL port
     }
+}
+
+import dj_database_url
+
+DATABASES = {
+    'default': dj_database_url.config(default='postgresql://prajwal:Fe5q3R1MoxMlHbDf0dzhN30gUJ0o9iD7@dpg-cs79lvjtq21c73cqesng-a.oregon-postgres.render.com/datamaze_excel_uqjd')
+}
+"""
+import dj_database_url
+
+DATABASES = {
+    'default': dj_database_url.config(
+        default=os.getenv('DATABASE_URL', 'postgresql://prajwal:Fe5q3R1MoxMlHbDf0dzhN30gUJ0o9iD7@dpg-cs79lvjtq21c73cqesng-a.oregon-postgres.render.com/datamaze_excel_uqjd'))
+    
 }
 
 DATA_UPLOAD_MAX_MEMORY_SIZE = 70485760  # 10MB, adjust as needed

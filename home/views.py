@@ -90,38 +90,6 @@ def get_filtered_data(request):
     data = list(queryset.values('source', 'client', 'SPOC', 'skill', 'name', 'contact', 'Remarks'))
     return JsonResponse(data, safe=False)
 
-"""
-def get_unique_contacts_count(request):
-    if request.method == 'GET':
-        column = request.GET.get('column')
-        value = request.GET.get('value')
-        
-        # Ensure both column and value are provided
-        if column and value:
-            # Map of allowed columns and their exact model field names
-            allowed_columns = {
-                 'Remarks': 'Remarks', 
-                 'source': 'source', 
-                 'client': 'client', 
-                 'skill': 'skill',
-                 'SPOC' : 'SPOC'
-            }
-            
-            # Make sure the column exists in allowed_columns
-            if column in allowed_columns:
-                # Filter based on the correct field name in the model
-                filter_kwargs = {allowed_columns[column]: value}
-                
-                # Count unique contacts associated with the filtered rows
-                unique_contacts_count = Person.objects.filter(**filter_kwargs).values('contact').distinct().count()
-                return JsonResponse({'unique_contacts_count': unique_contacts_count})
-            else:
-                return JsonResponse({'error': 'Invalid column'}, status=400)
-        return JsonResponse({'error': 'Missing column or value parameter'}, status=400)
-
-
-
-"""
 from django.http import JsonResponse
 from urllib.parse import unquote
 
