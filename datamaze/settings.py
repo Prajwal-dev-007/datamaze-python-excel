@@ -25,7 +25,8 @@ SECRET_KEY = 'django-insecure-3bhla@2639y1l_4bf^2*d162$kk6k-^qtgb=zb=r8$+2+2+du#
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["postgresql://prajwal:Fe5q3R1MoxMlHbDf0dzhN30gUJ0o9iD7@dpg-cs79lvjtq21c73cqesng-a.oregon-postgres.render.com/datamaze_excel_uqjd"]
+ALLOWED_HOSTS = ["postgresql://prajwal:Fe5q3R1MoxMlHbDf0dzhN30gUJ0o9iD7@dpg-cs79lvjtq21c73cqesng-a.oregon-postgres.render.com/datamaze_excel_uqjd",
+                 "datamaze-excel.onrender.com",]
 
 
 # Application definition
@@ -126,7 +127,7 @@ CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'
 
 ROOT_URLCONF = 'datamaze.urls'
 CORS_ALLOW_ALL_ORIGINS = True 
-ALLOWED_HOSTS = ['your-django-backend.com', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['your-django-backend.com', 'localhost', '127.0.0.1',"datamaze-excel.onrender.com"]
 
 
 
