@@ -29,8 +29,7 @@ SECRET_KEY = 'django-insecure-3bhla@2639y1l_4bf^2*d162$kk6k-^qtgb=zb=r8$+2+2+du#
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["postgresql://prajwal:Fe5q3R1MoxMlHbDf0dzhN30gUJ0o9iD7@dpg-cs79lvjtq21c73cqesng-a.oregon-postgres.render.com/datamaze_excel_uqjd",
-                 "datamaze-excel.onrender.com",]
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -135,7 +134,8 @@ CORS_ALLOWED_ORIGINS = [
     "https://datamazeexcel.netlify.app",  # Replace with your frontend URL if different
     "https://datamaze-excel.onrender.com",
 ]
-ALLOWED_HOSTS = ['your-django-backend.com', 'localhost', '127.0.0.1',"datamaze-excel.onrender.com"]
+#ALLOWED_HOSTS = ['your-django-backend.com', 'localhost', '127.0.0.1',"datamaze-excel.onrender.com"]
+ALLOWED_HOSTS = ["datamaze-excel.onrender.com"]
 
 
 
