@@ -127,6 +127,10 @@ CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'
 
 ROOT_URLCONF = 'datamaze.urls'
 CORS_ALLOW_ALL_ORIGINS = True 
+CORS_ALLOWED_ORIGINS = [
+    "https://datamazeexcel.netlify.app",  # Replace with your frontend URL if different
+    "https://datamaze-excel.onrender.com",
+]
 ALLOWED_HOSTS = ['your-django-backend.com', 'localhost', '127.0.0.1',"datamaze-excel.onrender.com"]
 
 
