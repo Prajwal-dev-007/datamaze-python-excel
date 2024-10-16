@@ -18,6 +18,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Set the STATIC_URL and STATIC_ROOT
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+# Ensure React build directory is properly linked for serving static files
+
+
+
 
 
 # Quick-start development settings - unsuitable for production
@@ -137,12 +141,14 @@ CORS_ALLOWED_ORIGINS = [
 #ALLOWED_HOSTS = ['your-django-backend.com', 'localhost', '127.0.0.1',"datamaze-excel.onrender.com"]
 ALLOWED_HOSTS = ["datamaze-excel.onrender.com"]
 
-
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'datamaze-react', 'build', 'static'),
+]
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'datamaze-react', 'build')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
