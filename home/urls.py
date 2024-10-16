@@ -2,6 +2,8 @@
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 from .views import *
+from django.urls import re_path  # Import re_path
+from django.views.generic import TemplateView  # Import TemplateView
 
 
 router = DefaultRouter()
@@ -19,6 +21,7 @@ urlpatterns = [
       path('add-row/', add_row,name='add_row'),
       path('get-filtered-data/', get_filtered_data, name='get_filtered_data'),
      path('get-unique-contacts-count/', get_unique_contacts_count, name='get_unique_contacts_count'),
+     re_path(r'^.*$', TemplateView.as_view(template_name='index.html')),
 
     
 ]
