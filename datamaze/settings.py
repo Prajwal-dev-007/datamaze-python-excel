@@ -83,8 +83,8 @@ import dj_database_url
 
 DATABASES = {
     'default': dj_database_url.config(
-        default='postgresql://prajwal:Fe5q3R1MoxMlHbDf0dzhN30gUJ0o9iD7@dpg-cs79lvjtq21c73cqesng-a.oregon-postgres.render.com/datamaze_excel_uqjd')
-    
+        default=os.getenv('DATABASE_URL')
+    )
 }
 
 DATA_UPLOAD_MAX_MEMORY_SIZE = 70485760  # 10MB, adjust as needed
