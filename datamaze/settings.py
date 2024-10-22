@@ -76,13 +76,15 @@ DATABASES = {
         'PORT': '5432',                    # Default PostgreSQL port
     }
 }
-
+"""
+"""
 import dj_database_url
 
 DATABASES = {
     'default': dj_database_url.config(default='postgresql://prajwal:Fe5q3R1MoxMlHbDf0dzhN30gUJ0o9iD7@dpg-cs79lvjtq21c73cqesng-a.oregon-postgres.render.com/datamaze_excel_uqjd')
 }
 """
+
 import dj_database_url
 
 DATABASES = {
@@ -90,15 +92,18 @@ DATABASES = {
         default=os.getenv('DATABASE_URL')
     )
 }
-
 DATA_UPLOAD_MAX_MEMORY_SIZE = 70485760  # 10MB, adjust as needed
 FILE_UPLOAD_MAX_MEMORY_SIZE = 70485760  # 10MB, adjust as needed
 
 # settings.py
 
+REDIS_URL = os.getenv('REDIS_URL')
+
 # Celery Configuration Options
-CELERY_BROKER_URL = 'redis://localhost:6379/0'  # Redis as the message broker
-CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'  # Redis to store task results
+#CELERY_BROKER_URL = 'redis://localhost:6379/0' 
+CELERY_BROKER_URL =  REDIS_URL# Redis as the message broker
+#CELERY_RESULT_BACKEND = 'redis://localhost:6379/0' 
+CELERY_RESULT_BACKEND = REDIS_URL  # Redis to store task results
 
 # Optional: Use JSON for task serialization
 CELERY_ACCEPT_CONTENT = ['json']
@@ -113,7 +118,7 @@ CELERY_ENABLE_UTC = True
 CELERY_TASK_TIME_LIMIT = 3600  # 1 hour (adjust as needed)
 
 CELERY_TASK_ROUTES = {
-    'my_app.tasks.process_excel_file_task': {'queue': 'excel_tasks'},
+    'home.tasks.process_excel_file_task': {'queue': 'excel_tasks'},
 }
 
 CELERYD_HIJACK_ROOT_LOGGER = False
@@ -126,8 +131,8 @@ CELERY_BEAT_SCHEDULER = 'django_celery_beat.schedulers:DatabaseScheduler'
 
 # settings.py
 
-CELERY_BROKER_URL = 'redis://localhost:6379/0'
-CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'
+CELERY_BROKER_URL = REDIS_URL
+CELERY_RESULT_BACKEND = REDIS_URL
 
 
 
@@ -135,11 +140,11 @@ CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'
 ROOT_URLCONF = 'datamaze.urls'
 CORS_ALLOW_ALL_ORIGINS = True 
 CORS_ALLOWED_ORIGINS = [
-    "https://datamazeexcel.netlify.app",  # Replace with your frontend URL if different
+    "https://datamazeexcel.netlify.app",  
     "https://datamaze-excel.onrender.com",
 ]
 #ALLOWED_HOSTS = ['your-django-backend.com', 'localhost', '127.0.0.1',"datamaze-excel.onrender.com"]
-ALLOWED_HOSTS = ["datamaze-excel.onrender.com"]
+ALLOWED_HOSTS = ["datamaze-excel.onrender.com","127.0.0.1 ","localhost"]
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'datamaze-react', 'build', 'static'),
