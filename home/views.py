@@ -89,7 +89,7 @@ def get_filtered_data(request):
     # Return the filtered data as JSON
     data = list(queryset.values('source', 'client', 'SPOC', 'skill', 'name', 'contact', 'Remarks'))
     return JsonResponse(data, safe=False)
-
+"""
 from django.http import JsonResponse
 from urllib.parse import unquote
 
@@ -121,3 +121,46 @@ def get_unique_contacts_count(request):
             return JsonResponse({'unique_contacts_count': unique_contacts_count})
         else:
             return JsonResponse({'error': 'No valid filters provided'}, status=400)
+"""
+from django.http import JsonResponse
+from urllib.parse import unquote
+from django.db.models import Count
+
+def get_unique_contacts_count(request):
+    if request.method == 'GET':
+        # Get multiple filter values from the request
+        client = request.GET.get('client')
+        skill = request.GET.get('skill')
+        spoc = request.GET.get('SPOC')
+        source = request.GET.get('source')
+
+        # Prepare filter kwargs dynamically
+        filter_kwargs = {}
+        if client:
+            filter_kwargs['client'] = unquote(client)
+        if skill:
+            filter_kwargs['skill'] = unquote(skill)
+        if spoc:
+            filter_kwargs['SPOC'] = unquote(spoc)
+        if source:
+            filter_kwargs['source'] = unquote(source)
+
+        # Filter by the provided criteria
+        queryset = Person.objects.filter(**filter_kwargs).values('contact').distinct()
+
+        # Aggregate counts by each unique "Remarks" value dynamically
+        remarks_counts = (
+            queryset
+            .values('Remarks')  # Group by each unique Remarks value
+            .annotate(count=Count('contact'))  # Count unique contacts per Remarks value
+        )
+
+        # Prepare response data
+        response_data = {
+            'unique_contacts_count': queryset.count(),
+            'remarks_counts': {item['Remarks']: item['count'] for item in remarks_counts}
+        }
+        
+        return JsonResponse(response_data)
+    else:
+        return JsonResponse({'error': 'Invalid request method'}, status=405)

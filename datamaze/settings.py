@@ -77,6 +77,7 @@ DATABASES = {
     }
 }
 """
+
 """
 import dj_database_url
 
@@ -92,6 +93,7 @@ DATABASES = {
         default=os.getenv('DATABASE_URL')
     )
 }
+
 DATA_UPLOAD_MAX_MEMORY_SIZE = 70485760  # 10MB, adjust as needed
 FILE_UPLOAD_MAX_MEMORY_SIZE = 70485760  # 10MB, adjust as needed
 
