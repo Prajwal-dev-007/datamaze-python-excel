@@ -89,7 +89,7 @@ def get_filtered_data(request):
     # Return the filtered data as JSON
     data = list(queryset.values('source', 'client', 'SPOC', 'skill', 'name', 'contact', 'Remarks'))
     return JsonResponse(data, safe=False)
-"""
+
 from django.http import JsonResponse
 from urllib.parse import unquote
 
@@ -121,6 +121,8 @@ def get_unique_contacts_count(request):
             return JsonResponse({'unique_contacts_count': unique_contacts_count})
         else:
             return JsonResponse({'error': 'No valid filters provided'}, status=400)
+
+
 """
 from django.http import JsonResponse
 from urllib.parse import unquote
@@ -164,3 +166,4 @@ def get_unique_contacts_count(request):
         return JsonResponse(response_data)
     else:
         return JsonResponse({'error': 'Invalid request method'}, status=405)
+"""
